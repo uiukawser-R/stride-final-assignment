@@ -1,61 +1,46 @@
-// /* eslint-disable react/prop-types */
-// import { Link } from "react-router-dom";
-// const SingleProductsForDasbord = ({shoe,onDelete}) => {
-//   const {id,name,price,ratings,seller,img}=shoe;
+/* eslint-disable no-unused-vars */
 
-
-//   const handleDelete =  () => {
-//     fetch(`http://localhost:3000/product/${id}`, {
-//       method: "DELETE",
-//     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         onDelete(id);
-//       });
-//   };
-
-
-//     return (
-//         <div className="card card-compact w-96 bg-base-100 shadow-xl">
-//   <figure><img src={img} alt="Shoes" /></figure>
-//   <div className="card-body">
-//     <h2 className="card-title">{name}</h2>
-//     <p> Seller: {seller}</p>
-//     <p>Prece: {price}</p>
-//     <p>Rating: {ratings}</p>
-//     <div className="card-actions justify-end">
-//       <div className="flex gap-1">
-      
-//       <button onClick={handleDelete} className="btn btn-secondary"> Delete </button>
-//       <button className="btn btn-accent"> <Link to={`edit/${id}`} > Edit</Link>  </button>
-//       <button className="btn btn-primary"> <Link to={`/product/${id}`}> Deatils</Link>  </button>
-      
-  
-//       </div>
-//     </div>
-//   </div>
-// </div>
-//     );
-// };
-
-// export default SingleProductsForDasbord;
 
 /* eslint-disable react/prop-types */
+import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 
 const SingleProductsForDasbord = ({ shoe, onDelete }) => {
     const { id, name, price, ratings, seller, img } = shoe;
 
     const handleDelete = () => {
-        fetch(`http://localhost:3000/product/${id}`, {
-            method: "DELETE",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                onDelete(id);
-            });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/product/${id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        onDelete(id);
+                        Swal.fire(
+                            'Deleted!',
+                            'Your product has been deleted.',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        Swal.fire(
+                            'Error!',
+                            'There was an error deleting your product.',
+                            'error'
+                        );
+                    });
+            }
+        });
     };
 
     return (
@@ -85,3 +70,4 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
 };
 
 export default SingleProductsForDasbord;
+
