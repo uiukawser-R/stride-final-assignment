@@ -1,15 +1,17 @@
 
+import img from '../../assets/adidas.png';
+
 const Banner = () => {
     return (
-        <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Hello there</h1>
-            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <button className="btn btn-primary">Get Started</button>
-          </div>
+        <div className="hero min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${img})` }}>
+            <div className="hero-overlay bg-opacity-60"></div>
+            <div className="hero-content text-center text-neutral-content px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md mx-auto">
+                    <h1 className="mb-5 text-4xl sm:text-5xl font-bold">Hello there</h1>
+                    <button className="btn btn-primary px-6 py-3 text-base sm:text-lg">Get Started</button>
+                </div>
+            </div>
         </div>
-      </div>
     );
 };
 

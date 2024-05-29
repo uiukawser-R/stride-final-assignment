@@ -66,10 +66,11 @@ export const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path:"edit",
+                path:"all-products/edit/:id",
                 element:<PrivateRoute>
                     <Edit></Edit>
-                </PrivateRoute>
+                </PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:3000/product/${params.id}`)
             },
         ]
     }

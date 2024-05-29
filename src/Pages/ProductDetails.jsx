@@ -5,7 +5,7 @@ const ProductDetails = () => {
     console.log(shoe);
     const {name,price,ratings,seller,img,stock,category}=shoe;
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center bg-lime-200">
         <h1 className="text-5xl text-center font-bold">{name}</h1>
   
         <img className="h-[600px]" src={img} alt="product image" />
