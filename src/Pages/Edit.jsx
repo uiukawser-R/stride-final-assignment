@@ -1,8 +1,11 @@
+
+
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Edit = () => {
-    const products=useLoaderData();
+    const products = useLoaderData();
 
     const [id, setId] = useState(products.id);
     const [name, setName] = useState(products.name);
@@ -12,7 +15,6 @@ const Edit = () => {
     const [img, setImg] = useState(products.img);
     const [stock, setStock] = useState(products.stock);
     const [ratings, setRatings] = useState(products.ratings);
-
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -27,20 +29,45 @@ const Edit = () => {
       const stock = form.stock.value;
       const ratings = form.ratings.value;
   
-      const data = { id, name, seller, price, category, img,stock,ratings };
-      console.log(data);
-  
-
-
-    await fetch(`http://localhost:3000/product/${products.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      const data = { id, name, seller, price, category, img, stock, ratings };
+      
+      // SweetAlert2 confirmation dialog
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to proceed with editing the product?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:3000/product/${products.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            Swal.fire(
+              'Updated!',
+              'The product has been updated.',
+              'success'
+            );
+            console.log(data);
+          })
+          .catch((error) => {
+            Swal.fire(
+              'Error!',
+              'There was an error updating the product.',
+              'error'
+            );
+            console.error(error);
+          });
+        }
+      });
     };
   
     return (
@@ -134,14 +161,13 @@ const Edit = () => {
               <input
                 className="btn mt-4 w-full bg-red-500 text-white p-4"
                 type="submit"
-                value="Add product"
+                value="Edit product"
               />
             </div>
           </form>
         </div>
       </div>
     );
-  };
-  
-  export default Edit;
-  
+};
+
+export default Edit;
