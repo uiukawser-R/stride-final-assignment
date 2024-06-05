@@ -53,7 +53,7 @@ const Navbar = () => {
             
             
               <li>
-                <Link to={"/dasboard"}>Dashboard</Link>
+                <Link to={"/Dasbord-dasbord"}>Dashboard</Link>
               </li>
               {
                 user ? <>

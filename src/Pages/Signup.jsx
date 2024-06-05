@@ -21,8 +21,21 @@ const Signup = () => {
 
         createUser(data.email,data.password)
         .then(result=>{
-            const loggedUser=result.user;
-            console.log(loggedUser);
+             if (result?.user?.email) {
+        const userInfo = {
+          email: result.user.email,
+          name: data.name,
+          photoURL: data.photoURL,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        }).then(res=>res.json())
+        .then(data=>console.log(data))
+      }
         })
     }
 
@@ -52,6 +65,12 @@ const Signup = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input type="email" {...register("email")} name="email" placeholder="email" className="input input-bordered" required />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input type="text" {...register("photoURL")} name="photoURL" placeholder="photoURL" className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">

@@ -8,7 +8,7 @@ const DasboardLayout = () => {
             <div className="sm:col-span-2 bg-orange-400 min-h-1/2-screen md:min-h-screen p-4 sm:p-12">
                 <ul>
                     <li className="border border-black p-2 sm:p-4 text w-full">
-                        <Link to={"Dasbord-dasbord"}>Dashboard</Link>
+                        <Link to={"Dasbord-dasbord"}>Profile</Link>
                     </li>
                     <li className="border border-black p-2 sm:p-4 text w-full">
                         <Link to={"all-products"}>All Products</Link>

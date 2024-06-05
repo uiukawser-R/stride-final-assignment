@@ -1,7 +1,15 @@
+// import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
     const shoe=useLoaderData();
+    // const [products, setProducts] = useState([]);
+
+    // useEffect(() => {
+    //   fetch("http://localhost:5000/events")
+    //     .then((res) => res.json())
+    //     .then((data) => setProducts(data));
+    // }, []);
     console.log(shoe);
     const {name,price,ratings,seller,img,stock,category}=shoe;
     return (

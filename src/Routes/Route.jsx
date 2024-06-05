@@ -12,6 +12,7 @@ import ProductDetails from "../Pages/ProductDetails";
 import AllProduct from "../Pages/AllProduct";
 import AddProducts from "../Pages/AddProducts";
 import Edit from "../Pages/Edit";
+import EditProfile from "../Pages/EditProfile";
 
 export const router = createBrowserRouter([
     {
@@ -22,12 +23,12 @@ export const router = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
-            loader:()=>fetch("http://localhost:3000/product")
+            loader:()=>fetch("http://localhost:5000/events")
         },
         {
             path:'/product/:id',
             element:<ProductDetails></ProductDetails>,
-            loader:({params})=>fetch(`http://localhost:3000/product/${params.id}`)
+            loader:({params})=>fetch(`http://localhost:5000/events/${params.id}`)
         },
        
         {
@@ -53,6 +54,19 @@ export const router = createBrowserRouter([
                 path:"Dasbord-dasbord",
                 element:<PrivateRoute><DasBoard></DasBoard></PrivateRoute>
             },
+            // {
+            //     path:"Dasbord-dasbord/profile-edit/:id",
+            //     element:<PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
+            //     loader:({params})=>fetch(`http://localhost:5000/users/get/${params.id}`)
+            // },
+
+            {
+                path: "Dasbord-dasbord/profile-edit/:id",
+                element: <PrivateRoute><EditProfile /></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/users/get/${params.id}`)
+              },
+
+
             {
                 path:"all-products",
                 element:<PrivateRoute>
@@ -70,7 +84,7 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <Edit></Edit>
                 </PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:3000/product/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:5000/events/${params.id}`)
             },
         ]
     }

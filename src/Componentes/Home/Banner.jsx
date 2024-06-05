@@ -1,5 +1,5 @@
 
-import img from '../../assets/adidas.png';
+import img from '../../assets/eventscom_cover.jpg';
 
 const Banner = () => {
     return (

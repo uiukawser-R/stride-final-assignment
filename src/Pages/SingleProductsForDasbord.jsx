@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 
 const SingleProductsForDasbord = ({ shoe, onDelete }) => {
-    const { id, name, price, ratings, seller, img } = shoe;
+    const { _id, name, price, ratings, seller, img } = shoe;
 
     const handleDelete = () => {
         Swal.fire({
@@ -19,13 +19,13 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/product/${id}`, {
+                fetch(`http://localhost:5000/events/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);
-                        onDelete(id);
+                        onDelete(_id);
                         Swal.fire(
                             'Deleted!',
                             'Your product has been deleted.',
@@ -57,10 +57,10 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
                     <div className="flex flex-wrap gap-1">
                         <button onClick={handleDelete} className="btn btn-secondary">Delete</button>
                         <button className="btn btn-accent">
-                            <Link to={`edit/${id}`} className="text-white">Edit</Link>
+                            <Link to={`edit/${_id}`} className="text-white">Edit</Link>
                         </button>
                         <button className="btn btn-primary">
-                            <Link to={`/product/${id}`} className="text-white">Details</Link>
+                            <Link to={`/product/${_id}`} className="text-white">Details</Link>
                         </button>
                     </div>
                 </div>

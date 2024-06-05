@@ -5,8 +5,29 @@ import useAuth from "../Hooks/useAuth";
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
 
+  // const handleGoogleSignIn = () => {
+  //   googleLogin()
+  // };
   const handleGoogleSignIn = () => {
-    googleLogin();
+    googleLogin().then((data) => {
+      if (data?.user?.email) {
+        const userInfo = {
+          email: data?.user?.email,
+          name: data?.user?.displayName,
+          photoURL: data?.user?.photoURL,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        }).then(res=>res.json())
+        .then(data=>{
+          localStorage.setItem('token',data?.token)
+        })
+      }
+    });
   };
 
   return (

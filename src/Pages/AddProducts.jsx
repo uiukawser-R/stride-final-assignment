@@ -5,10 +5,10 @@ import Swal from 'sweetalert2';
 
 const AddProducts = () => {
   const handleSubmit = async (e) => {
+    const token=localStorage.getItem('token');
     e.preventDefault();
 
     const form = e.target;
-    const id = form.id.value;
     const name = form.name.value;
     const seller = form.seller.value;
     const price = form.price.value;
@@ -17,7 +17,7 @@ const AddProducts = () => {
     const stoke = form.stoke.value;
     const ratings = form.ratings.value;
 
-    const data = { id, name, seller, price, category, img, stoke, ratings };
+    const data = { name, seller, price, category, img, stoke, ratings };
     console.log(data);
 
     // Confirmation dialog
@@ -31,10 +31,11 @@ const AddProducts = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch("http://localhost:3000/product", {
+          const response = await fetch("http://localhost:5000/events", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
+              authorization:`Bearer ${token}`,
             },
             body: JSON.stringify(data),
           });
@@ -83,7 +84,7 @@ const AddProducts = () => {
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Event Name"
             />
           </div>
           <div className="mt-2">
@@ -134,14 +135,7 @@ const AddProducts = () => {
               placeholder="Image URL"
             />
           </div>
-          <div className="mt-2">
-            <input
-              className="bg-gray-100 p-4 w-full border border-black rounded-lg"
-              type="text"
-              name="id"
-              placeholder="ID"
-            />
-          </div>
+        
           <div className="mt-2 flex justify-center items-center">
             <input
               className="btn mt-4 w-full bg-red-500 text-white p-4"

@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 const Edit = () => {
     const products = useLoaderData();
 
-    const [id, setId] = useState(products.id);
     const [name, setName] = useState(products.name);
     const [seller, setSeller] = useState(products.seller);
     const [price, setPrice] = useState(products.price);
@@ -17,6 +16,7 @@ const Edit = () => {
     const [ratings, setRatings] = useState(products.ratings);
 
     const handleSubmit = async (e) => {
+      const token=localStorage.getItem('token');
       e.preventDefault();
   
       const form = e.target;
@@ -42,10 +42,11 @@ const Edit = () => {
         confirmButtonText: 'Yes, proceed!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:3000/product/${products.id}`, {
+          fetch(`http://localhost:5000/events/${products._id}`, {
             method: "PATCH",
             headers: {
               "Content-type": "application/json",
+              authorization:`Bearer ${token}`,
             },
             body: JSON.stringify(data),
           })
@@ -147,16 +148,7 @@ const Edit = () => {
               />
             </div>
             
-            <div className="mt-2">
-              <input
-                className="bg-gray-100 p-4 w-full border border-black rounded-lg"
-                type="text"
-                name="id"
-                placeholder="ID"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
-            </div>
+         
             <div className="mt-2 flex justify-center items-center">
               <input
                 className="btn mt-4 w-full bg-red-500 text-white p-4"
