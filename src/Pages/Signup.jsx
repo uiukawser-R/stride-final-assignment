@@ -27,7 +27,7 @@ const Signup = () => {
           name: data.name,
           photoURL: data.photoURL,
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://stride-final-assignment-server-j2tm.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

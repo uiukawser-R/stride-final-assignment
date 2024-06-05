@@ -5,7 +5,7 @@ const AllProduct = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-      fetch("http://localhost:5000/events")
+      fetch("https://stride-final-assignment-server-j2tm.vercel.app/events")
         .then((res) => res.json())
         .then((data) => setProducts(data));
     }, []);

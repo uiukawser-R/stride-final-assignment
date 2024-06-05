@@ -8,7 +8,7 @@ const DasBoard = () => {
     console.log(user);
     // const {displayName,email,photoURL}= user;
     useEffect(()=>{
-      fetch(`http://localhost:5000/users/${user?.email}`)
+      fetch(`https://stride-final-assignment-server-j2tm.vercel.app/users/${user?.email}`)
       .then((res)=>res.json())
       .then((data)=>setUserInfo(data));
     },[user])

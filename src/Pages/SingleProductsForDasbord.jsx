@@ -19,7 +19,7 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/events/${_id}`, {
+                fetch(`https://stride-final-assignment-server-j2tm.vercel.app/events/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
