@@ -26,7 +26,7 @@ export default function EditProfile() {
     };
 
     fetch(
-      `https://stride-final-assignment-server-j2tm.vercel.app/users/${data?.email}`,
+      `https://stride-final-assignment-server.vercel.app/users/${data?.email}`,
       {
         method: "PATCH",
         headers: {

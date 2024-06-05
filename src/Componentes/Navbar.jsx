@@ -1,6 +1,8 @@
 
 
 
+
+
 import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
@@ -16,7 +18,7 @@ const Navbar = () => {
  
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-blue-200">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,7 +55,7 @@ const Navbar = () => {
             
             
               <li>
-                <Link to={"/Dasbord-dasbord"}>Dashboard</Link>
+                <Link to={"/dasboard"}>Dashboard</Link>
               </li>
               {
                 user ? <>
@@ -68,7 +70,7 @@ const Navbar = () => {
            
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">adidas</a>
+        <a className="btn btn-ghost text-xl"> <span className="font-bold text-5xl text-blue-600">E</span> <span>V</span><span>E</span><span >N</span > T</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

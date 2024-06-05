@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../Componentes/Home/Banner";
 import Products from "../Componentes/Home/Products";
 import EventManagement from "../Componentes/Home/EventManagement";
+import Spekar from "./Spekar";
 
 const Home = () => {
     const data=useLoaderData();
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <Products data={data}></Products>
             <EventManagement></EventManagement>
+            <Spekar></Spekar>
         </div>
     );
 };

@@ -9,15 +9,14 @@ const AddProducts = () => {
     e.preventDefault();
 
     const form = e.target;
-    const name = form.name.value;
-    const seller = form.seller.value;
-    const price = form.price.value;
-    const category = form.category.value;
+    const title = form.title.value;
+    const date = form.date.value;
+    const location = form.location.value;
+    const description = form.description.value;
     const img = form.img.value;
-    const stoke = form.stoke.value;
-    const ratings = form.ratings.value;
+    const organizer = form.organizer.value;
 
-    const data = { name, seller, price, category, img, stoke, ratings };
+    const data = { title, date, location, description, img, organizer };
     console.log(data);
 
     // Confirmation dialog
@@ -31,7 +30,7 @@ const AddProducts = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch("https://stride-final-assignment-server-j2tm.vercel.app/events", {
+          const response = await fetch("https://stride-final-assignment-server.vercel.app/events", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -75,7 +74,7 @@ const AddProducts = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center">Add a Product</h1>
+      <h1 className="text-5xl font-bold text-center">Add a Event</h1>
 
       <div className="my-16">
         <form onSubmit={handleSubmit}>
@@ -83,48 +82,32 @@ const AddProducts = () => {
             <input
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
-              name="name"
-              placeholder="Event Name"
+              name="title"
+              placeholder="Event Title"
             />
           </div>
           <div className="mt-2">
             <input
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
-              name="seller"
-              placeholder="Seller"
+              name="date"
+              placeholder="date"
             />
           </div>
           <div className="mt-2">
             <input
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
-              name="price"
-              placeholder="Price"
+              name="organizer"
+              placeholder="organizer"
             />
           </div>
           <div className="mt-2">
             <input
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
-              name="category"
-              placeholder="Category"
-            />
-          </div>
-          <div className="mt-2">
-            <input
-              className="bg-gray-100 p-4 w-full border border-black rounded-lg"
-              type="text"
-              name="stoke"
-              placeholder="Stoke"
-            />
-          </div>
-          <div className="mt-2">
-            <input
-              className="bg-gray-100 p-4 w-full border border-black rounded-lg"
-              type="text"
-              name="ratings"
-              placeholder="Ratings"
+              name="location"
+              placeholder="location"
             />
           </div>
           <div className="mt-2">
@@ -132,9 +115,18 @@ const AddProducts = () => {
               className="bg-gray-100 p-4 w-full border border-black rounded-lg"
               type="text"
               name="img"
-              placeholder="Image URL"
+              placeholder="img"
             />
           </div>
+          <div className="mt-2">
+            <input
+              className="bg-gray-100 p-4 w-full border border-black rounded-lg"
+              type="text"
+              name="description"
+              placeholder="description"
+            />
+          </div>
+         
         
           <div className="mt-2 flex justify-center items-center">
             <input

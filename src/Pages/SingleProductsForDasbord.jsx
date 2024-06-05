@@ -5,8 +5,9 @@
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 
-const SingleProductsForDasbord = ({ shoe, onDelete }) => {
-    const { _id, name, price, ratings, seller, img } = shoe;
+const SingleProductsForDasbord = ({ event, onDelete }) => {
+    const { _id, title, location, date,img } = event;
+    console.log(event);
 
     const handleDelete = () => {
         Swal.fire({
@@ -19,7 +20,7 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://stride-final-assignment-server-j2tm.vercel.app/events/${_id}`, {
+                fetch(`https://stride-final-assignment-server.vercel.app/events/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
@@ -46,13 +47,13 @@ const SingleProductsForDasbord = ({ shoe, onDelete }) => {
     return (
         <div className="card card-compact bg-base-100 shadow-xl p-4 md:p-6">
             <figure className="w-full">
-                <img src={img} alt="Shoes" className="w-full" />
+                <img src={img} alt="Events img" className="w-full" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title text-lg md:text-xl font-bold mb-2">{name}</h2>
-                <p className="text-sm mb-1">Seller: {seller}</p>
-                <p className="text-sm mb-1">Price: {price}</p>
-                <p className="text-sm mb-1">Rating: {ratings}</p>
+                <h2 className="card-title text-lg md:text-xl font-bold mb-2">{title}</h2>
+                <p className="text-sm mb-1">Title: {title}</p>
+                <p className="text-sm mb-1">Date: {date}</p>
+                <p className="text-sm mb-1">Location: {location}</p>
                 <div className="card-actions justify-end">
                     <div className="flex flex-wrap gap-1">
                         <button onClick={handleDelete} className="btn btn-secondary">Delete</button>

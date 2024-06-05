@@ -23,12 +23,12 @@ export const router = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
-            loader:()=>fetch("https://stride-final-assignment-server-j2tm.vercel.app/events")
+            loader:()=>fetch("https://stride-final-assignment-server.vercel.app/events")
         },
         {
             path:'/product/:id',
             element:<ProductDetails></ProductDetails>,
-            loader:({params})=>fetch(`https://stride-final-assignment-server-j2tm.vercel.app/events/${params.id}`)
+            loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/events/${params.id}`)
         },
        
         {
@@ -57,13 +57,13 @@ export const router = createBrowserRouter([
             // {
             //     path:"Dasbord-dasbord/profile-edit/:id",
             //     element:<PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
-            //     loader:({params})=>fetch(`https://stride-final-assignment-server-j2tm.vercel.app/users/get/${params.id}`)
+            //     loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/users/get/${params.id}`)
             // },
 
             {
                 path: "Dasbord-dasbord/profile-edit/:id",
                 element: <PrivateRoute><EditProfile /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://stride-final-assignment-server-j2tm.vercel.app/users/get/${params.id}`)
+                loader: ({ params }) => fetch(`https://stride-final-assignment-server.vercel.app/users/get/${params.id}`)
               },
 
 
@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <Edit></Edit>
                 </PrivateRoute>,
-                loader:({params})=>fetch(`https://stride-final-assignment-server-j2tm.vercel.app/events/${params.id}`)
+                loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/events/${params.id}`)
             },
         ]
     }
