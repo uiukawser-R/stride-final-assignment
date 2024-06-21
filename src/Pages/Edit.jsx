@@ -40,7 +40,7 @@ const Edit = () => {
         confirmButtonText: 'Yes, proceed!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`https://stride-final-assignment-server.vercel.app/events/${products._id}`, {
+          fetch(`http://localhost:5000/events/${products._id}`, {
             method: "PATCH",
             headers: {
               "Content-type": "application/json",

@@ -47,6 +47,9 @@ const Navbar = () => {
             <li>
               <Link to={"/about"}>About</Link>
             </li>
+            <li>
+              <Link to={"/contact"}>Contact</Link>
+            </li>
             
                
                 <li>
@@ -55,7 +58,7 @@ const Navbar = () => {
             
             
               <li>
-                <Link to={"/dasboard"}>Dashboard</Link>
+                <Link to={"/dasboard/dashboard"}>Dashboard</Link>
               </li>
               {
                 user ? <>
@@ -80,13 +83,15 @@ const Navbar = () => {
           <li>
             <Link to={"/about"}>About</Link>
           </li>
-         
+          <li>
+              <Link to={"/contact"}>Contact</Link>
+            </li>
              
               <li>
                 <Link to={"/signup"}>Signup</Link>
               </li>
               <li>
-                <Link to={"/dasboard"}>Dashboard</Link>
+                <Link to={"/dasboard/dashboard"}>Dashboard</Link>
               </li>
 
               {
@@ -110,3 +115,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

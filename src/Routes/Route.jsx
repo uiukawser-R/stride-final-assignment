@@ -4,7 +4,6 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrerPage";
 import DasboardLayout from "../Layout/DasboardLayout";
-import DasBoard from "../Pages/DasBoard";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -13,6 +12,9 @@ import AllProduct from "../Pages/AllProduct";
 import AddProducts from "../Pages/AddProducts";
 import Edit from "../Pages/Edit";
 import EditProfile from "../Pages/EditProfile";
+import Profile from "../Pages/Profile";
+import Dashboard from "../Pages/Dashboard";
+import Contact from "../Pages/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -23,12 +25,12 @@ export const router = createBrowserRouter([
         {
             path:'/',
             element:<Home></Home>,
-            loader:()=>fetch("https://stride-final-assignment-server.vercel.app/events")
+            loader:()=>fetch("http://localhost:5000/events")
         },
         {
             path:'/product/:id',
             element:<ProductDetails></ProductDetails>,
-            loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/events/${params.id}`)
+            loader:({params})=>fetch(`http://localhost:5000/events/${params.id}`)
         },
        
         {
@@ -43,6 +45,11 @@ export const router = createBrowserRouter([
             path:'/signup',
             element:<Signup></Signup>
         },
+        {
+            path:'/contact',
+            element:<Contact></Contact>
+        },
+    
       ]
     },
     {
@@ -51,19 +58,20 @@ export const router = createBrowserRouter([
         errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
-                path:"Dasbord-dasbord",
-                element:<PrivateRoute><DasBoard></DasBoard></PrivateRoute>
+                path:"profile",
+                element:<PrivateRoute><Profile></Profile> </PrivateRoute>
             },
+           
             // {
-            //     path:"Dasbord-dasbord/profile-edit/:id",
+            //     path:"profile/profile-edit/:id",
             //     element:<PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
-            //     loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/users/get/${params.id}`)
+            //     loader:({params})=>fetch(`http://localhost:5000/users/get/${params.id}`)
             // },
 
             {
-                path: "Dasbord-dasbord/profile-edit/:id",
+                path: "profile/profile-edit/:id",
                 element: <PrivateRoute><EditProfile /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://stride-final-assignment-server.vercel.app/users/get/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/users/get/${params.id}`)
               },
 
 
@@ -71,6 +79,12 @@ export const router = createBrowserRouter([
                 path:"all-products",
                 element:<PrivateRoute>
                     <AllProduct></AllProduct>
+                </PrivateRoute>
+            },
+            {
+                path:"dashboard",
+                element:<PrivateRoute>
+                    <Dashboard></Dashboard>
                 </PrivateRoute>
             },
             {
@@ -84,7 +98,7 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <Edit></Edit>
                 </PrivateRoute>,
-                loader:({params})=>fetch(`https://stride-final-assignment-server.vercel.app/events/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:5000/events/${params.id}`)
             },
         ]
     }

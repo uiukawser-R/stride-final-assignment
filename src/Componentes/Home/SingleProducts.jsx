@@ -4,13 +4,13 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-const SingleProducts = ({ shoe }) => {
-    const { _id, title, organizer, date, location, img } = shoe;
+const SingleProducts = ({ event }) => {
+    const { _id, title, organizer, date, location, img } = event;
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
             <figure className="w-full">
-                <img src={img} alt="Shoes" className="w-full" />
+                <img src={img} alt="events" className="w-full" />
             </figure>
             <div className="card-body p-4">
                 <h2 className="card-title text-lg font-bold mb-2">{title}</h2>

@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router-dom";
 
-const DasBoard = () => {
+const Profile = () => {
     const {user}=useAuth();
     const [userInfo,setUserInfo]=useState();
     console.log(user);
     // const {displayName,email,photoURL}= user;
     useEffect(()=>{
-      fetch(`https://stride-final-assignment-server.vercel.app/users/${user?.email}`)
+      fetch(`http://localhost:5000/users/${user?.email}`)
       .then((res)=>res.json())
       .then((data)=>setUserInfo(data));
     },[user])
@@ -29,4 +29,4 @@ const DasBoard = () => {
     );
 };
 
-export default DasBoard;
+export default Profile;

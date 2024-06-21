@@ -16,7 +16,7 @@ const GoogleLogin = () => {
           name: data?.user?.displayName,
           photoURL: data?.user?.photoURL,
         };
-        fetch("https://stride-final-assignment-server.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import GoogleLogin from "../Componentes/GoogleLogin";
 import { useEffect } from "react";
+import FacebookLogin from "../Componentes/FacebookLogin";
 
 const Login = () => {
     const { signIn,user} = useAuth();
@@ -60,9 +61,12 @@ const Login = () => {
                         <div>
                             <GoogleLogin></GoogleLogin>
                         </div>
+                        <div>
+                            <FacebookLogin></FacebookLogin>
+                        </div>
                     </form>
                     
-                    <p><small>New here? <Link to='/signup'>Create an account</Link></small></p>
+                    <p><small>New here?    <Link to='/signup'>  Create an account</Link></small></p>
                 </div>
             </div>
         </div>

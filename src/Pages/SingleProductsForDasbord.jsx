@@ -1,13 +1,10 @@
 /* eslint-disable no-unused-vars */
-
-
 /* eslint-disable react/prop-types */
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 
 const SingleProductsForDasbord = ({ event, onDelete }) => {
-    const { _id, title, location, date,img } = event;
-    console.log(event);
+    const { _id, title, location, date, img } = event;
 
     const handleDelete = () => {
         Swal.fire({
@@ -20,12 +17,16 @@ const SingleProductsForDasbord = ({ event, onDelete }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://stride-final-assignment-server.vercel.app/events/${_id}`, {
+                const token = localStorage.getItem('token');
+
+                fetch(`http://localhost:5000/events/${_id}`, {
                     method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data);
                         onDelete(_id);
                         Swal.fire(
                             'Deleted!',
@@ -71,4 +72,3 @@ const SingleProductsForDasbord = ({ event, onDelete }) => {
 };
 
 export default SingleProductsForDasbord;
-
